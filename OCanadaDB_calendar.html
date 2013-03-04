@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/xhtml">
+<head>
+<title>Orienteering Canada calendar</title>
+<link rel='stylesheet' type='text/css' href='./fullcalendar 1.5.4/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='./fullcalendar 1.5.4/fullcalendar.print.css' media='print' />
+
+<link rel='stylesheet' type='text/css' href='./dynatree-1.2.2 2/src/skin/ui.dynatree.css'>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables.css" />
+<link rel="stylesheet" type="text/css" href="./leaflet 0.5.0/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" type="text/css" href="./leaflet 0.5.0/leaflet.ie.css" />
+<![endif]-->
+<!--
+<link rel='stylesheet' type='text/css' href='./jquery-ui-1.9m7/themes/base/jquery.ui.all.css' />
+-->
+<link rel='stylesheet' type='text/css' href='./css/cof-theme/jquery-ui-1.10.0.custom.css' />
+<link rel='stylesheet' type="text/css" href="./css/button-highlight/jquery-ui-1.8.21.custom.css" />
+<!--	
+<script type='text/javascript' src='./js/jquery-1.9.0.min.js'></script>
+-->
+<script type='text/javascript' src='./js/jquery-1.9.0.js'></script>
+<script type='text/javascript' src='./js/jquery-migrate-1.0.0.js'></script>
+<script type='text/javascript' src='./js/jquery-ui-1.10.0.custom.js'></script>
+
+<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/jquery.dataTables.js'></script>
+<!--
+<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/jquery.dataTables.min.js'></script>
+-->
+<script type='text/javascript' src='./fullcalendar 1.5.4/fullcalendar.js'></script>
+
+<!--
+<script type="text/javascript" src='./dynatree-1.2.2 2/src/jquery.dynatree.js' ></script>
+-->
+<script type="text/javascript" src='./dynatree-unreleased/src/jquery.dynatree.js' ></script>
+
+<!--
+<script type='text/javascript' src="./leaflet 0.5.0/leaflet.js"></script>
+-->
+<script type='text/javascript' src="./leaflet 0.5.0/leaflet-src.js"></script>
+<!--
+<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+-->
+<script type="text/javascript" src="http://www.barebones.ca/myO/myO_date.js"    ></script>
+
+
+
+<script type='text/javascript' src="./OCanadaDB_widgets.js"></script>
+
+<script type='text/javascript'>
+	$(document).ready(function() {
+ 		jQuery.OCanadaDB_widgets.initCalendar ();
+	});
+	
+</script>
+
+
+<style type='text/css'>
+
+	body {
+		margin-top	: 4px;
+		text-align	: left;
+		font-family	: Verdana,Arial,sans-serif;
+		font-size	: small;	
+	}
+
+	#calendar {
+		width: 100%;
+		margin: 0 auto;
+		}
+		
+	#wjrCal_sliderMapDateRangeText {
+		color: black;
+		font-weight: bold;
+	}
+		
+	#wjrCal_sliderMapDateRange.ui-slider {
+		background: lightgray;
+	}
+	
+	#wjrCal_spinNDays {
+		width: 2.5em;
+	}
+
+	#wjrCal_spinNDaysLabel {
+		color: gray;
+		font-weight: bold;
+	}
+	
+	#wjrCal_btnSliderToday {	
+	}
+	
+	.ui-slider-handle.ui-state-default {
+		background: #8b0000;
+	}
+</style>
+<!--	
+	#wjrCal_sliderMapDateRangeText {
+		border:0;
+		color:#8b0000;
+		font-weight:bold;
+	}
+</style>
+-->
+
+
+</head>
+<body>
+
+
+<div id='wjrCalendarPages'  style="width: 500px; margin: 0 auto;">
+
+	<div id="wjrCalPageHeader">	
+<!--		<h2 class="ui-widget fc-header-title">Orienteering Canada calendar</h2>
+-->
+		<table>
+			<colgroup>
+			  	<col width="82%">
+	  			<col width="18%">
+			</colgroup>
+			<tr>
+				<td>
+					<div id="wjrCalViewButtonset">
+						<input type="radio" id="wjrCalViewBtn_wjrCal"        value="#wjrCal"        name="ViewType" /><label for="wjrCalViewBtn_wjrCal"        >Calendar</label>
+						<input type="radio" id="wjrCalViewBtn_wjrCalList"    value="#wjrCalList"    name="ViewType" /><label for="wjrCalViewBtn_wjrCalList"    >List</label>
+						<input type="radio" id="wjrCalViewBtn_wjrCalMap"     value="#wjrCalMap"     name="ViewType" /><label for="wjrCalViewBtn_wjrCalMap"     >Map</label>
+						<input type="radio" id="wjrCalViewBtn_wjrCalOptions" value="#wjrCalOptions" name="ViewType" /><label for="wjrCalViewBtn_wjrCalOptions" >Options</label>
+					</div>
+				</td>
+				<td align="right">
+					<div id="wjrCal_spinner" style="display: none;"><img src="./images/spinner.gif" alt="Wait" /></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id = 'wjrCalOptions' style="display: none;">
+	
+<!--		<br/>
+		<div id="wjrCalOptions_themeSwitcher"></div>
+-->
+
+		<br/>
+		<h3>Select Clubs</h3>
+		<button id="wjrCal_btnSelectAllClubs"  >Select All</button>
+		<button id="wjrCal_btnDeselectAllClubs">De-select All</button>
+		
+		<div id="wjrCal_ClubTree" style="border:0; width: 500px;">			
+		</div>
+
+	</div>
+	
+<!--
+	<div id="wjrCal_tabs">
+		<ul>
+			<li><a href="#wjrCal"   >Calendar</a></li>
+			<li><a href="wjrCalList">List</a></li>
+			<li><a href="#wjrCalMap">Map</a></li>
+		</ul>
+	</div>
+-->
+
+	<div id='wjrCal'>
+
+		<br/>
+		<div id='calendar'></div>
+	</div>
+	
+	<div id = 'wjrCalList' style="display: none;">	
+
+		<br />
+		<p>Start: <input id="wjrCal_startDate" type="text"></p>
+
+		<div id="wjrCalList_EventList"></div>
+	</div>
+			
+	<div id = 'wjrCalMap' style="display: none;">	
+
+		<br/>
+		<table>
+			<colgroup>
+			  	<col width="82%">
+	  			<col width="18%">
+			</colgroup>
+			<tr>
+				<td>
+					<span id="wjrCal_sliderMapDateRangeText"></span>
+				</td>
+				<td align="right">
+					<button id="wjrCal_btnSliderToday">today</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="wjrCal_sliderMapDateRange"></div>		
+				</td>
+				<td align="right">
+					<span  id="wjrCal_spinNDaysLabel">Days:</span>
+<!--bugbug - type NUMBER causes double arrows on Chrome, Safari
+					<input id="wjrCal_spinNDays" type="number">
+-->
+  					<input id="wjrCal_spinNDays" type="text">
+				</td>
+			</tr>
+		</table>
+		
+		<br />
+		<div id="map" style="height: 800px"></div>
+	</div>
+</div>
+</body>
+</html>
